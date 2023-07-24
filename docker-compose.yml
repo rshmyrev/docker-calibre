@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  calibre:
+    image: rshmyrev/calibre
+    build: .
+    environment:
+      - DISPLAY=unix${DISPLAY} # X11
+    devices:
+      - /dev/dri
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:ro # X11
+      - ${HOME}/.config/calibre:/config # config
+      - ${HOME}/Calibre Library:/library # library
+      - /media/${LOGNAME}/Kindle:/media/user/Kindle # Kindle (optional)
